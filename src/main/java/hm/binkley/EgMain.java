@@ -1,15 +1,14 @@
 package hm.binkley;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-/**
- * {@code EgMain} <b>needs documentation</b>.
- *
- * @author <a href="mailto:binkley@alumni.rice.edu">B. K. Oxley (binkley)</a>
- * @todo Needs documentation.
- */
-public final class EgMain {
+@SpringBootApplication
+public class EgMain {
     public static void main(final String... args) {
+        SpringApplication.run(EgMain.class, args);
     }
 
     public void fast() {}
