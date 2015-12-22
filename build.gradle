@@ -1,3 +1,7 @@
+plugins {
+    id 'org.unbroken-dome.test-sets' version '1.2.0'
+}
+
 apply plugin: 'java'
 
 sourceCompatibility = 1.8
@@ -7,20 +11,8 @@ repositories {
     mavenCentral()
 }
 
-sourceSets {
-    integrationTest {
-        java {
-            srcDir file('src/it/java')
-            compileClasspath += main.output + test.output
-            runtimeClasspath += main.output + test.output
-        }
-        resources.srcDir file('src/it/resources')
-    }
-}
-
-configurations {
-    integrationTestCompile.extendsFrom testCompile
-    integrationTestRuntime.extendsFrom testRuntime
+testSets {
+    integrationTest { dirName = 'it' }
 }
 
 dependencies {
@@ -28,16 +20,18 @@ dependencies {
     integrationTestCompile 'org.assertj:assertj-core:3.2.0'
 }
 
-task integrationTest(type: Test) {
-    testClassesDir = sourceSets.integrationTest.output.classesDir
-    classpath = sourceSets.integrationTest.runtimeClasspath
-    outputs.upToDateWhen { false }  // Always run IT tests
-}
-
 check.dependsOn integrationTest
 integrationTest.mustRunAfter test
+project.integrationTest {
+    outputs.upToDateWhen { false } // Always run IT
+}
+
+// Work around issue #12 in test sets plugin
 tasks.withType(Test) {
-    reports.html.destination = file("${reporting.baseDir}/${name}")
+    reports.html.destination = new File(project.reportsDir, name)
+    reports.junitXml.destination \
+     = new File(project.buildDir, "${name}-results")
+    binResultsDir = new File(reports.junitXml.destination, "binary")
 }
 
 // vi: filetype=groovy
