@@ -3,8 +3,10 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
+        maven { url 'http://repo.spring.io/plugins-release' }
     }
     dependencies {
+        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE'
     }
 }
@@ -15,6 +17,7 @@ plugins {
     id 'org.unbroken-dome.test-sets' version '1.2.0'
 }
 apply plugin: 'spring-boot'
+apply plugin: 'propdeps'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -23,6 +26,7 @@ version = '1-SNAPSHOT'
 repositories {
     mavenCentral()
     jcenter()
+    maven { url 'http://repo.spring.io/plugins-release' }
 }
 
 testSets {
@@ -30,6 +34,8 @@ testSets {
 }
 
 dependencies {
+    provided 'com.google.code.findbugs:jsr305:3.0.1'
+    provided 'org.projectlombok:lombok:1.16.6'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
@@ -45,8 +51,8 @@ project.integrationTest {
 // Work around issue #12 in test sets plugin
 tasks.withType(Test) {
     reports.html.destination = new File(project.reportsDir, name)
-    reports.junitXml.destination  \
-        = new File(project.buildDir, "${name}-results")
+    reports.junitXml.destination   \
+         = new File(project.buildDir, "${name}-results")
     binResultsDir = new File(reports.junitXml.destination, "binary")
 }
 
