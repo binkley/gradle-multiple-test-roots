@@ -4,7 +4,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.logging.LogLevel;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
@@ -15,7 +14,7 @@ import org.springframework.web.client.RestOperations;
 import java.net.URI;
 import java.text.ParseException;
 
-import static hm.binkley.NiceLoggingRule.niceLoggingRule;
+import static hm.binkley.SpringDefaultNiceLoggingRule.springDefaultNiceLoggingRule;
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -24,9 +23,7 @@ import static org.hamcrest.Matchers.equalTo;
 @WebIntegrationTest({"server.port:0", "management.port:0"})
 public final class RootControllerIntegrationTest {
     @Rule
-    public final NiceLoggingRule<LogLevel> niceLogging = niceLoggingRule(
-            "^(?<timestamp>\\d{4,4}-\\d{2,2}-\\d{2,2} \\d{2,2}:\\d{2,2}:\\d{2,2}\\.\\d{3,3}) +(?<level>%s) +",
-            LogLevel.values());
+    public final NiceLoggingRule niceLogging = springDefaultNiceLoggingRule();
 
     private final RestOperations template = new TestRestTemplate();
 

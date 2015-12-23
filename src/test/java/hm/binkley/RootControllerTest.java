@@ -4,13 +4,12 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.logging.LogLevel;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static hm.binkley.NiceLoggingRule.niceLoggingRule;
+import static hm.binkley.SpringDefaultNiceLoggingRule.springDefaultNiceLoggingRule;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -22,9 +21,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @SpringApplicationConfiguration(classes = MockServletContext.class)
 public final class RootControllerTest {
     @Rule
-    public final NiceLoggingRule<LogLevel> niceLogging = niceLoggingRule(
-            "^(?<timestamp>\\d{4,4}-\\d{2,2}-\\d{2,2} \\d{2,2}:\\d{2,2}:\\d{2,2}\\.\\d{3,3}) +(?<level>%s) +",
-            LogLevel.values());
+    public final NiceLoggingRule niceLogging = springDefaultNiceLoggingRule();
 
     private MockMvc mvc;
 
