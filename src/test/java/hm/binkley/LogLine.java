@@ -25,7 +25,8 @@ public final class LogLine {
     @Nonnull
     private final LogLevel level;
 
-    public LogLine(@Nonnull final String line) {
+    private LogLine(@Nonnull final Pattern logLinePattern,
+            @Nonnull final String line) {
         try {
             final Matcher match = logLinePattern.matcher(line);
             if (!match.find()) // Not match! Ignore trailing CR?NL
@@ -48,5 +49,24 @@ public final class LogLine {
     @Override
     public String toString() {
         return line;
+    }
+
+    public static final class LogLineFactory {
+        private final Pattern logLinePattern;
+
+        @Nonnull
+        public static LogLineFactory logLineFactory(
+                @Nonnull final String pattern) {
+            return new LogLineFactory(pattern);
+        }
+
+        private LogLineFactory(@Nonnull final String pattern) {
+            logLinePattern = compile(pattern);
+        }
+
+        @Nonnull
+        public LogLine newLogLine(@Nonnull final String line) {
+            return new LogLine(logLinePattern, line);
+        }
     }
 }
