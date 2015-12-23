@@ -38,8 +38,9 @@ dependencies {
     provided 'org.projectlombok:lombok:1.16.6'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'org.assertj:assertj-core:3.2.0'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testRuntime 'com.jayway.jsonpath:json-path'
 }
 
 check.dependsOn integrationTest
