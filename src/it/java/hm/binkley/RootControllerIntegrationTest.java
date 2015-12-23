@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(EgMain.class)
 @WebIntegrationTest({"server.port:0", "management.port:0"})
-public final class EgMainIntegrationTest {
+public final class RootControllerIntegrationTest {
     @Test
     public void shouldRunSlow() {
         assertThat(2).isEqualTo(2);

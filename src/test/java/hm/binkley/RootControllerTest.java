@@ -2,7 +2,7 @@ package hm.binkley;
 
 import org.junit.Test;
 
-public final class EgMainTest {
+public final class RootControllerTest {
     @Test
     public void shouldRunFast() {}
 }
