@@ -1,0 +1,4 @@
+rootProject.name = "gradle-test-sets"
+
+include "a"
+include "b"

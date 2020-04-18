@@ -1,0 +1,13 @@
+testSets {
+    integrationTest { extendsFrom unitTest }
+}
+
+dependencies {
+    unitTest sourceSets.test.output
+
+    integrationTest sourceSets.integrationTest.output
+}
+
+check {
+    dependsOn integrationTest
+}
