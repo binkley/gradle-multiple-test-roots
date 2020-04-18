@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = "gradle-test-sets"
+rootProject.name = "gradle-multiple-test-roots"
 
 include "a"
 include "b"
