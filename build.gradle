@@ -13,6 +13,8 @@ buildscript {
 plugins {
     id "build-dashboard"
     id "com.dorongold.task-tree"
+    id "com.github.ben-manes.versions"
+    id "se.patrikerdes.use-latest-versions"
 }
 
 apply plugin: BasePlugin

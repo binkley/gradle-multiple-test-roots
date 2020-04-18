@@ -1,6 +1,8 @@
 pluginManagement {
     plugins {
         id "com.dorongold.task-tree" version "${taskTreePluginVersion}"
+        id "com.github.ben-manes.versions" version "${versionsPluginVersion}"
+        id "se.patrikerdes.use-latest-versions" version "${useLatestVersionsPluginVersion}"
     }
 }
 
