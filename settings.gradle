@@ -1,3 +1,9 @@
+pluginManagement {
+    plugins {
+        id "com.dorongold.task-tree" version "${taskTreePluginVersion}"
+    }
+}
+
 rootProject.name = "gradle-test-sets"
 
 include "a"
