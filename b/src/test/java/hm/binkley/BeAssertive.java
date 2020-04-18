@@ -1,4 +1,4 @@
-package x;
+package hm.binkley;
 
 import lombok.experimental.UtilityClass;
 

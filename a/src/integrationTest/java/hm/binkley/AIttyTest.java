@@ -1,9 +1,9 @@
-package x;
+package hm.binkley;
 
 import org.junit.jupiter.api.Test;
 
-import static x.BeAssertive.assertLittle;
-import static x.BeIttyAssertive.assertNothing;
+import static hm.binkley.BeAssertive.assertLittle;
+import static hm.binkley.BeIttyAssertive.assertNothing;
 
 class AIttyTest {
     @Test
