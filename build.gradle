@@ -1,16 +1,5 @@
-buildscript {
-    repositories {
-        gradlePluginPortal()
-        mavenCentral()
-        jcenter()
-    }
-
-    dependencies {
-        classpath "org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:${testsetsPluginVersion}"
-    }
-}
-
 plugins {
+    id "org.unbroken-dome.test-sets"
     id "build-dashboard"
     id "com.dorongold.task-tree"
     id "com.github.ben-manes.versions"
