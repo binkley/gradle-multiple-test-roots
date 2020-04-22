@@ -1,4 +1,5 @@
 plugins {
+    id "jacoco"
     id "org.unbroken-dome.test-sets"
     id "build-dashboard"
     id "com.dorongold.task-tree"
@@ -9,9 +10,21 @@ plugins {
 apply plugin: BasePlugin
 
 allprojects {
+    apply plugin: "jacoco"
+
     group = "x"
     version = "0"
 
+    jacoco {
+        toolVersion = "${jacocoVersion}"
+    }
+
+    task jacoco {
+        group = "Verification"
+        description = "Checks Java test coverage."
+
+        dependsOn tasks.withType(JacocoReportBase)
+    }
 
     repositories {
         mavenCentral()
@@ -20,7 +33,7 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: JavaPlugin
+    apply plugin: "java"
     apply plugin: "org.unbroken-dome.test-sets"
 
     sourceCompatibility = 11
@@ -41,10 +54,56 @@ subprojects {
 
     tasks.withType(Test) {
         useJUnitPlatform()
+
+        finalizedBy jacocoTestReport
+    }
+
+    tasks.withType(JacocoReportBase) {
+        executionData(fileTree(buildDir).include("/jacoco/*.exec"))
+    }
+
+    jacocoTestReport {
+        dependsOn tasks.withType(Test)
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = 1.00
+                }
+            }
+        }
+
+        dependsOn jacocoTestReport
+    }
+
+    check {
+        dependsOn jacocoTestCoverageVerification
+    }
+}
+
+task jacocoMerge(type: JacocoMerge) {
+    subprojects.each { subproject ->
+        executionData subproject.tasks.withType(Test)
+    }
+}
+
+task jacocoMergedTestReport(type: JacocoReport) {
+    dependsOn jacocoMerge
+
+    executionData fileTree(buildDir).include("/jacoco/*.exec")
+    sourceDirectories.setFrom(files(subprojects.sourceSets.main.allSource.srcDirs))
+    classDirectories.setFrom(files(subprojects.sourceSets.main.output))
+
+    //noinspection GroovyAssignabilityCheck
+    reports {
+        html.enabled = true
     }
 }
 
 check {
+    dependsOn jacocoMergedTestReport
     finalizedBy buildDashboard
 }
 
