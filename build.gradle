@@ -10,8 +10,6 @@ plugins {
 apply plugin: BasePlugin
 
 allprojects {
-    apply plugin: "jacoco"
-
     group = "x"
     version = "0"
 
@@ -34,6 +32,7 @@ allprojects {
 
 subprojects {
     apply plugin: "java"
+    apply plugin: "jacoco"
     apply plugin: "org.unbroken-dome.test-sets"
 
     sourceCompatibility = 11
@@ -60,10 +59,6 @@ subprojects {
 
     tasks.withType(JacocoReportBase) {
         executionData(fileTree(buildDir).include("/jacoco/*.exec"))
-    }
-
-    jacocoTestReport {
-        dependsOn tasks.withType(Test)
     }
 
     jacocoTestCoverageVerification {
@@ -96,7 +91,6 @@ task jacocoMergedTestReport(type: JacocoReport) {
     sourceDirectories.setFrom(files(subprojects.sourceSets.main.allSource.srcDirs))
     classDirectories.setFrom(files(subprojects.sourceSets.main.output))
 
-    //noinspection GroovyAssignabilityCheck
     reports {
         html.enabled = true
     }
