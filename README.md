@@ -25,3 +25,13 @@ prints the tasks that would run.
 * `[ab]/src/integrationTest/*` - Integration test code and resources
 
 Module `a` depends on module `b`.
+
+## Build features
+
+- All version details externalized to [`gradle.properties`](gradle.properties)
+- Java
+- Build dashboard &mdash; top-level view of Gradle reports
+- JaCoCo &mdash; code coverage
+- Task tree &mdash; display task dependencies
+- Test sets &mdash; multiple test source roots
+- Versions &mdash; update to latest plugin/dependency versions
