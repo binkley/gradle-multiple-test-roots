@@ -1,5 +1,5 @@
 plugins {
-    id "build-dashboard"
+    // id "build-dashboard"
     id "jacoco"
     id "org.unbroken-dome.test-sets"
     id "ru.vyarus.quality"
