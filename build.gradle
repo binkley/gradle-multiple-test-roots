@@ -1,7 +1,8 @@
 plugins {
+    id "build-dashboard"
     id "jacoco"
     id "org.unbroken-dome.test-sets"
-    id "build-dashboard"
+    id "ru.vyarus.quality"
     id "com.dorongold.task-tree"
     id "com.github.ben-manes.versions"
     id "se.patrikerdes.use-latest-versions"
@@ -33,6 +34,7 @@ allprojects {
 subprojects {
     apply plugin: "java"
     apply plugin: "jacoco"
+    apply plugin: "ru.vyarus.quality"
     apply plugin: "org.unbroken-dome.test-sets"
 
     sourceCompatibility = 11
@@ -100,7 +102,7 @@ task jacocoMergedTestReport(type: JacocoReport) {
 
 check {
     dependsOn jacocoMergedTestReport
-    finalizedBy buildDashboard
+//    finalizedBy buildDashboard
 }
 
 wrapper {
