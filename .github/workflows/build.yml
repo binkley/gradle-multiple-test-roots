@@ -10,15 +10,17 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - uses: actions/cache@master
+      - name: Restore cached Gradle local
+        id: gradle-cache
+        uses: actions/cache@master
         env:
-          cache-name: cache-maven-dependencies
+          cache-name: cache-gradle
         with:
           path: ~/.gradle
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{hashFiles('**/gradle.properties') }}
+          key: ${{ runner.os }}-gradle-${{ env.cache-name }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
+            ${{ runner.os }}-gradle-${{ env.cache-name }}
+            ${{ runner.os }}-gradle-
             ${{ runner.os }}-
 
       - name: Set up JDK 11
@@ -27,4 +29,4 @@ jobs:
           version: 11
 
       - name: Build and verify
-        run: ./gradlew build
+        run: ./gradlew clean build
