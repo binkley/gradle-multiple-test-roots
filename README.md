@@ -21,6 +21,16 @@ After building at least once, you can see the impact of the build cache:
 [Gradle task tree](https://github.com/dorongold/gradle-task-tree) pretty
 prints the tasks that would run.
 
+## Maintenance
+
+To update Gradle:
+
+```
+$ ${EDITOR-vi} gradle.properties
+# Edit the Gradle version
+$ ./gradlew wrapper
+```
+
 ## Structure
 
 * `[ab]/src/main/*` - Production code and resources
@@ -38,3 +48,7 @@ Module `a` depends on module `b`.
 - Task tree &mdash; display task dependencies
 - Test sets &mdash; multiple test source roots
 - Versions &mdash; update to latest plugin/dependency versions
+
+## TODO
+
+- Something broke with SpotBugs Gradle plugin between Gradle 6.3 and 6.4.1
