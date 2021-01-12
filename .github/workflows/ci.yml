@@ -10,23 +10,23 @@ on:
 
 jobs:
   build:
-    name: Builds and verifies
+    name: Builds and tests
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@master
+      - name: Checkout
+        uses: actions/checkout@master
 
-      - name: Restore cached Gradle local
-        id: gradle-cache
+      - name: Restore cache
         uses: actions/cache@master
         env:
-          cache-name: cache-gradle
+          cache-name: cache-dependencies
         with:
           path: ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ env.cache-name }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{hashFiles('**/build.gradle') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-${{ env.cache-name }}
-            ${{ runner.os }}-gradle-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
             ${{ runner.os }}-
 
       - name: Set up JDK 11
@@ -34,5 +34,5 @@ jobs:
         with:
           java-version: 11
 
-      - name: Build and verify
-        run: ./gradlew --no-daemon clean build
+      - name: Build and test
+        run: ./gradlew --no-daemon build
