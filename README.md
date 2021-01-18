@@ -10,6 +10,7 @@ A demo multi-module project for
 [![build](https://github.com/binkley/gradle-multiple-test-roots/workflows/build/badge.svg)](https://github.com/binkley/gradle-multiple-test-roots/actions)
 [![issues](https://img.shields.io/github/issues/binkley/gradle-multiple-test-roots.svg)](https://github.com/binkley/gradle-multiple-test-roots/issues/)
 [![Public Domain](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](http://unlicense.org/)
+
 ## Usage
 
 ```
@@ -52,6 +53,13 @@ Module `a` depends on module `b`.
 - Task tree &mdash; display task dependencies
 - Test sets &mdash; multiple test source roots
 - Versions &mdash; update to latest plugin/dependency versions
+
+## Notes
+
+In a single-module project, `lombok.config` would normally be stored as
+`src/lombok.config` relative to the project root.  However, so that this 
+file can be shared among multiple modules, it is kept in the project root 
+for this repository.
 
 ## TODO
 
