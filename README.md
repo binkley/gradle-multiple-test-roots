@@ -9,7 +9,8 @@ A demo multi-module project for
 
 [![build](https://github.com/binkley/gradle-multiple-test-roots/workflows/build/badge.svg)](https://github.com/binkley/gradle-multiple-test-roots/actions)
 [![issues](https://img.shields.io/github/issues/binkley/gradle-multiple-test-roots.svg)](https://github.com/binkley/gradle-multiple-test-roots/issues/)
-[![Public Domain](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](http://unlicense.org/)
+[![vulnerabilities](https://snyk.io/test/github/binkley/gradle-multiple-test-roots/badge.svg)](https://snyk.io/test/github/binkley/gradle-multiple-test-roots)
+[![license](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](http://unlicense.org/)
 
 ## Usage
 
