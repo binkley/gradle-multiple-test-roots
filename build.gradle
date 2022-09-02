@@ -13,7 +13,7 @@ plugins {
 apply plugin: BasePlugin
 
 allprojects {
-    group = "x"
+    group = "hm.binkley"
     version = "0"
 
     jacoco {
@@ -29,7 +29,6 @@ allprojects {
 
     repositories {
         mavenCentral()
-        jcenter()
     }
 }
 
